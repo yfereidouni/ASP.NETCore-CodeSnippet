@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MVCLibrary", "MVCLibrary\MV
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebAPI", "WebAPI", "{9C6789F5-3946-458E-A92F-610632EDA537}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "WebAPI\WebAPI\WebAPI.csproj", "{F7D65ACD-F302-439A-9F46-409159A56590}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,12 +21,17 @@ Global
 		{599F1F80-3A24-4AD9-BE37-F89CAC7FDF79}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{599F1F80-3A24-4AD9-BE37-F89CAC7FDF79}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{599F1F80-3A24-4AD9-BE37-F89CAC7FDF79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7D65ACD-F302-439A-9F46-409159A56590}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7D65ACD-F302-439A-9F46-409159A56590}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7D65ACD-F302-439A-9F46-409159A56590}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7D65ACD-F302-439A-9F46-409159A56590}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{599F1F80-3A24-4AD9-BE37-F89CAC7FDF79} = {60B6C33A-7854-4DC1-A287-0FEE671C3271}
+		{F7D65ACD-F302-439A-9F46-409159A56590} = {9C6789F5-3946-458E-A92F-610632EDA537}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A51A9635-0A34-4105-8459-2D9ACE97873A}
