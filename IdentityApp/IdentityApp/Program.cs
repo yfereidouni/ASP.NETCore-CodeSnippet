@@ -33,7 +33,7 @@ builder.Services.AddRazorPages();
 //Not showing any page and redirect them to LOGIN form.
 //Unless you except the pages with the following attribute:
 //[AllowAnonymous]
-builder.Services.AddAuthorization(options => 
+builder.Services.AddAuthorization(options =>
 {
     options.FallbackPolicy = new AuthorizationPolicyBuilder()
         .RequireAuthenticatedUser()
@@ -42,10 +42,19 @@ builder.Services.AddAuthorization(options =>
 //----------------------------------------------------------------
 
 
-builder.Services.AddScoped<IAuthorizationHandler,InvoiceCreatorAutorizationHandler>();
+builder.Services.AddScoped<IAuthorizationHandler, InvoiceCreatorAutorizationHandler>();
+builder.Services.AddSingleton<IAuthorizationHandler, InvoiceManagerAuthorizationHandler>();
+builder.Services.AddSingleton<IAuthorizationHandler, InvoiceAdminAuthorizationHandler>();
 
 
 var app = builder.Build();
+
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    await SeedData.Initialize(services);
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

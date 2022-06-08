@@ -16,10 +16,10 @@ public class InvoiceOperations
     public static OperationAuthorizationRequirement Delete =
         new OperationAuthorizationRequirement { Name = Constants.DeleteOperationName };
 
-    public static OperationAuthorizationRequirement Approved =
+    public static OperationAuthorizationRequirement Approve =
         new OperationAuthorizationRequirement { Name = Constants.ApprovedOperationName };
 
-    public static OperationAuthorizationRequirement Rejected =
+    public static OperationAuthorizationRequirement Reject =
         new OperationAuthorizationRequirement { Name = Constants.RejectedOperationName };
 }
 
@@ -31,4 +31,8 @@ public class Constants
     public static readonly string DeleteOperationName = "Delete";
     public static readonly string ApprovedOperationName = "Approved";
     public static readonly string RejectedOperationName = "Rejected";
+
+    public static readonly string InvoiceManagersRole = "InvoiceManager";
+    public static readonly string InvoiceAdminRole = "InvoiceAdmin";
+
 }

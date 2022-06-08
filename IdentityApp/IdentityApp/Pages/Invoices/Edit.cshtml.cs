@@ -73,6 +73,8 @@ namespace IdentityApp.Pages.Invoices
             if (!isAuthorized.Succeeded)
                 return Forbid();
 
+            Invoice.Status = invoice.Status;
+
             Context.Attach(Invoice).State = EntityState.Modified;
 
             try

@@ -27,11 +27,22 @@ namespace IdentityApp.Pages.Invoices
 
         public async Task OnGetAsync()
         {
+            var invoices = from i in Context.Invoices
+                           select i;
+
+
+            var isManager = User.IsInRole(Constants.InvoiceManagersRole);
+
+            var isAdmin = User.IsInRole(Constants.InvoiceAdminRole);
+
             var currentUserId = UserManager.GetUserId(User);
 
-            Invoice = await Context.Invoices
-                .Where(c => c.CreatorId == currentUserId)
-                .ToListAsync();
+            if (!isManager && !isAdmin)
+            {
+                invoices = invoices.Where(c => c.CreatorId == currentUserId);
+            }
+
+            Invoice = await invoices.ToListAsync();
         }
     }
 }

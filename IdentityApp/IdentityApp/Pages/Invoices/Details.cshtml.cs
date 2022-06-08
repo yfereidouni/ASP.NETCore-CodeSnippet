@@ -36,13 +36,75 @@ namespace IdentityApp.Pages.Invoices
             if (Invoice == null)
                 return NotFound();
 
+            var isCreator = await AuthorizationService.AuthorizeAsync(
+                User, Invoice, InvoiceOperations.Read);
+
+            var isManager = User.IsInRole(Constants.InvoiceManagersRole);
+
+            if (!isCreator.Succeeded && !isManager)
+                return Forbid();
+
+
+            return Page();
+        }
+
+        public async Task<IActionResult> OnPostAsync(int id, InvoiceStatus status)
+        {
+            #region Toturial
+            Invoice = await Context.Invoices.FindAsync(id);
+
+            if (Invoice == null)
+                return NotFound();
+
+            var invoiceOperation = status == InvoiceStatus.Approved
+                ? InvoiceOperations.Approve
+                : InvoiceOperations.Reject;
+
             var isAuthorized = await AuthorizationService.AuthorizeAsync(
-                User, Invoice, InvoiceOperations.Delete);
+                User, Invoice, invoiceOperation);
 
             if (!isAuthorized.Succeeded)
                 return Forbid();
 
-            return Page();
+            Invoice.Status = status;
+            Context.Invoices.Update(Invoice);
+            await Context.SaveChangesAsync();
+
+            return RedirectToPage("./Index");
+            #endregion
+
+            #region My_handy_way_as_an_alternative
+            //var invoice = await Context.Invoices.FirstOrDefaultAsync(m => m.InvoiceId == id);
+
+            //invoice.Status = status;
+
+            //Invoice = invoice;
+
+            //Context.Attach(Invoice).State = EntityState.Modified;
+
+            //try
+            //{
+            //    await Context.SaveChangesAsync();
+            //}
+            //catch (DbUpdateConcurrencyException)
+            //{
+            //    if (!InvoiceExists(Invoice.InvoiceId))
+            //    {
+            //        return NotFound();
+            //    }
+            //    else
+            //    {
+            //        throw;
+            //    }
+            //}
+
+            //return RedirectToPage("./Index");
+            #endregion
+        }
+
+        private bool InvoiceExists(int id)
+        {
+            return (Context.Invoices?.Any(e => e.InvoiceId == id)).GetValueOrDefault();
         }
     }
 }
