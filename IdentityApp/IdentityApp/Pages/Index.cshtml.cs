@@ -6,7 +6,9 @@ namespace IdentityApp.Pages
 {
     public class IndexModel : PageModel
     {
-        public Dictionary<string, int> Revenue;
+        public Dictionary<string, int> revenueSubmitted;
+        public Dictionary<string, int> revenueApproved;
+        public Dictionary<string, int> revenueRejected;
 
         private readonly ILogger<IndexModel> _logger;
 
@@ -20,7 +22,34 @@ namespace IdentityApp.Pages
 
         public void OnGet()
         {
-            Revenue = new Dictionary<string, int>()
+            InitDict(ref revenueSubmitted);
+            InitDict(ref revenueApproved);
+            InitDict(ref revenueRejected);
+
+            var invoices = _context.Invoices.ToList();
+            foreach (var invoice in invoices)
+            {
+                switch (invoice.Status)
+                {
+                    case Models.InvoiceStatus.Submitted:
+                        revenueSubmitted[invoice.InvoiceMonth] += (int)invoice.InvoiceAmount;
+                        break;
+                    case Models.InvoiceStatus.Approved:
+                        revenueApproved[invoice.InvoiceMonth] += (int)invoice.InvoiceAmount;
+
+                        break;
+                    case Models.InvoiceStatus.Rejected:
+                        revenueRejected[invoice.InvoiceMonth] += (int)invoice.InvoiceAmount;
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+        public void InitDict(ref Dictionary<string, int> dict)
+        {
+            dict = new Dictionary<string, int>()
             {
                 {"January",0 },
                 {"February",0},
@@ -35,12 +64,6 @@ namespace IdentityApp.Pages
                 {"November",0 },
                 {"December",0 },
             };
-
-            var invoices = _context.Invoices.ToList();
-            foreach (var invoice in invoices)
-            {
-                Revenue[invoice.InvoiceMonth] += (int)invoice.InvoiceAmount;
-            }
         }
     }
 }
