@@ -4,7 +4,93 @@
     ViewData["Title"] = "Home page";
 }
 
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js"></script>
+    @*<script src="https://cdn.jsdeliver.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>*@
+    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js" integrity="sha512-sW/w8s4RWTdFFSduOTGtk4isV1+190E/GghVffMA9XczdJ2MDzSzLEubKAs5h0wzgSJOQTRYyaz73L3d6RtJSg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>*@
+</head>
+
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+
+<div>
+    <canvas id="myChart"></canvas>
+</div>
+
+@section Scripts{
+
+<script>
+
+    const lables = [
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December'
+    ];
+
+    const data = {
+        lables : lables,
+        datasets : [
+            {
+                lable: "Revenue",
+                backgroundColor : "rgb(255,99,132)",
+                borderColor : "rgb(255,99,132)",
+                data: [9,1,6,3,8,2,7,4,6,4,5,5]
+            },
+            {
+                lable: "Income",
+                backgroundColor : "rgb(100,255,88)",
+                borderColor : "rgb(100,255,88)",
+                data: [5,4,1,7,2,6,5,3,9,7,7,6]
+            }
+        ]
+    };
+
+    const config = {
+        type : 'line',
+        data : data,
+        options: {}
+    };
+
+
+    const myChart = new Chart(
+        document.getElementById('myChart'),
+        config
+    );
+
+    //--------------------------------
+    //let myChart = document.getElementById('myChart')
+    //let massPopChart = new Chart(myChart,{
+    //    type: 'line',
+    //    data:{
+    //        lables:['Boston','Worcester','Springfield','Lowell','New Bedford'],
+    //        datasets:[{
+    //            lable: 'Population',
+    //            data:[
+    //                617594,
+    //                182371,
+    //                198722,
+    //                761201,
+    //                102927,
+    //                172635
+    //            ]
+    //        }]
+    //    },
+    //    options:{}
+    //});
+    //--------------------------------
+
+
+</script>
+
+}
