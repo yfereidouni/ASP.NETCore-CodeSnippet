@@ -7,7 +7,7 @@ namespace IdentityApp.Data;
 public class SeedData
 {
     public static async Task Initialize(
-        IServiceProvider serviceProvider, string password = "1qaz!QAZ")
+        IServiceProvider serviceProvider, string password)
     {
         using (var context = new ApplicationDbContext(
             serviceProvider.GetRequiredService<DbContextOptions<ApplicationDbContext>>()))
