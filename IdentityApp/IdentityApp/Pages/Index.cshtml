@@ -16,80 +16,49 @@
 </div>
 
 <div>
-    <canvas id="myChart"></canvas>
+    @*<canvas id="myChart"></canvas>*@
+    <canvas id="myChart" width="400" height="250"></canvas>
 </div>
+
 
 @section Scripts{
 
 <script>
 
-    const lables = [
-        'January',
-        'February',
-        'March',
-        'April',
-        'May',
-        'June',
-        'July',
-        'August',
-        'September',
-        'October',
-        'November',
-        'December'
-    ];
-
-    const data = {
-        lables : lables,
-        datasets : [
+      var data = {
+        labels: @Json.Serialize(Model.Revenue.Keys),
+        datasets: [
             {
-                lable: "Revenue",
-                backgroundColor : "rgb(255,99,132)",
-                borderColor : "rgb(255,99,132)",
-                data: [9,1,6,3,8,2,7,4,6,4,5,5]
+                backgroundColor : "rgba(255,99,132,0.7)",
+                borderColor : "rgba(255,99,132,1)",
+                data: @Json.Serialize(Model.Revenue),
+                label:'Revenue-01'
+
             },
             {
-                lable: "Income",
-                backgroundColor : "rgb(100,255,88)",
-                borderColor : "rgb(100,255,88)",
-                data: [5,4,1,7,2,6,5,3,9,7,7,6]
+                backgroundColor : "rgba(75,192,192,0.7)",
+                borderColor : "rgba(75,192,192,1)",
+                data: @Json.Serialize(Model.Revenue),
+                label:'Revenue-02'
             }
         ]
     };
 
-    const config = {
-        type : 'line',
-        data : data,
-        options: {}
-    };
+    var myChart = new Chart("myChart", {
+      type: "bar",
+      data: data,
+      options: {
+        autoDisplayLegend: true
+      }
+    });
 
-
-    const myChart = new Chart(
-        document.getElementById('myChart'),
-        config
-    );
-
-    //--------------------------------
-    //let myChart = document.getElementById('myChart')
-    //let massPopChart = new Chart(myChart,{
-    //    type: 'line',
-    //    data:{
-    //        lables:['Boston','Worcester','Springfield','Lowell','New Bedford'],
-    //        datasets:[{
-    //            lable: 'Population',
-    //            data:[
-    //                617594,
-    //                182371,
-    //                198722,
-    //                761201,
-    //                102927,
-    //                172635
-    //            ]
-    //        }]
-    //    },
-    //    options:{}
-    //});
-    //--------------------------------
-
+    //setTimeout(function() {
+    //  data.datasets[0].label = "Revenue1"
+    //  //data.datasets[0].data=@Json.Serialize(Model.Revenue)
+    //  data.datasets[1].label = "Revenue2"
+    //  //data.datasets[1].data=@Json.Serialize(Model.Revenue)
+    //  myChart.update()
+    //}, 0)
 
 </script>
 
