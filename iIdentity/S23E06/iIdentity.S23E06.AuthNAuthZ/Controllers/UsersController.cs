@@ -62,6 +62,13 @@ namespace iIdentity.S23E06.AuthNAuthZ.Controllers
             return View(model);
         }
 
+        public async Task<IActionResult> Details(string id)
+        {
+            var user = await userManager.FindByIdAsync(id);
+
+            return View(user);
+        }
+
         [HttpPost]
         public async Task<IActionResult> Delete(string id)
         {
