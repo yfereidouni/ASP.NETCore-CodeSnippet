@@ -22,7 +22,8 @@ namespace iIdentity.S23E06.AuthNAuthZ.Controllers
         {
             //var redirectUrl = "/";
 
-            redirectUrl = Request.Query["ReturnUrl"];
+            redirectUrl = !string.IsNullOrEmpty(Request.Query["ReturnUrl"]) ? 
+                            Request.Query["ReturnUrl"] : "/";
 
             var model = new LoginModel() { RedirectUrl = redirectUrl };
 

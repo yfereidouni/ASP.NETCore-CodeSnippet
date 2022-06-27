@@ -4,10 +4,10 @@ namespace iIdentity.S23E06.AuthNAuthZ.Models.AAA.Data;
 
 public class LoginModel
 {
-    //[Required]
+    [Required]
     public string UserName { get; set; }
-    //[Required]
+    [Required]
     public string Password { get; set; }
     public bool RememberMe { get; set; }
-    public string RedirectUrl { get; set; }
+    public string? RedirectUrl { get; set; }
 }
