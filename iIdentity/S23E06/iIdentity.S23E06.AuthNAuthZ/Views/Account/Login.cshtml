@@ -1,5 +1,14 @@
 ﻿@model LoginModel
 
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="">
+    <h1 class="display-6">Login</h1>
+    <p>Login Information:</p>
+</div>
+
 <form asp-controller="Account" asp-action="Login" method="post">
 
     <div class="text-danger" asp-validation-summary="All"></div>

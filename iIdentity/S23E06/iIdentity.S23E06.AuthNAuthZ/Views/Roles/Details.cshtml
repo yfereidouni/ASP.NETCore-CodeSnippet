@@ -1,12 +1,12 @@
-﻿@model IdentityUser
+﻿@model IdentityRole
 
 @{
-    ViewData["Title"] = "User Details";
+    ViewData["Title"] = "Role Details";
 }
 
 <div class="">
     <h1 class="display-4">User Details</h1>
-    <p>User Information:</p>
+    <p>Role Information:</p>
 </div>
 
 <br />
@@ -17,14 +17,9 @@
 </div>
 
 <div class="form-group">
-    <label asp-for="UserName"></label>
-    <input class="form-control mb-1" type="text" name="Username" value="@Model.UserName" readonly />
+    <label asp-for="Name"></label>
+    <input class="form-control mb-1" type="text" name="Name" value="@Model.Name" readonly />
 </div>
 
-<div class="form-group">
-    <label asp-for="Email"></label>
-    <input class="form-control mb-1" type="email" name="Email" value="@Model.Email" readonly/>
-</div>
-
-<a class="btn btn-warning btn-lg mb-1" type="submit" asp-controller="Users" asp-action="Edit" asp-route-Id="@Model.Id">Edit</a>
-<a class="btn btn-secondary btn-lg mb-1" asp-controller="Users" asp-action="Index">Back</a>
+<a class="btn btn-warning btn-lg mb-1" type="submit" asp-controller="Roles" asp-action="Edit" asp-route-Id="@Model.Id">Edit</a>
+<a class="btn btn-secondary btn-lg mb-1" asp-controller="Roles" asp-action="Index">Back</a>
