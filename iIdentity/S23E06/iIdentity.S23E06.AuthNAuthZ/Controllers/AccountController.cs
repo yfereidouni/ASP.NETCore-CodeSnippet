@@ -54,5 +54,11 @@ namespace iIdentity.S23E06.AuthNAuthZ.Controllers
 
             return Redirect("/");
         }
+
+        public IActionResult AccessDenied()
+        {
+            return View();
+        }
+
     }
 }

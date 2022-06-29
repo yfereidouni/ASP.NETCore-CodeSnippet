@@ -80,6 +80,7 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(c =>
 ////builder.Services.AddTransient<IPasswordValidator<IdentityUser>, UsernameNotInPasswordValidator>();
 ////builder.Services.AddTransient<IPasswordValidator<IdentityUser>, BadPasswordValidator>();
 ////builder.Services.AddTransient<IUserValidator<IdentityUser>, CustomeUserValidator>();
+//--------------------------------------------------------------------------------------
 
 
 
