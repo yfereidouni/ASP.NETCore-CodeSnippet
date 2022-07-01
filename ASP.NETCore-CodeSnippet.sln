@@ -75,6 +75,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MVCLibrary", "Udemy.ASP.NET
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "iUdemy.Secure.NET.Microservices.IdentityServer4", "iUdemy.Secure.NET.Microservices.IdentityServer4", "{90E4AC61-F1E0-4DE0-9D0C-A2FE91E11408}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Movies.API", "iIdentity\iUdemy.Secure.NET.Microservices.IdentityServer4\Movies.API\Movies.API.csproj", "{39E15F61-1BDC-493A-B338-8B67B1CBB679}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -153,6 +155,10 @@ Global
 		{264D953B-A3CF-43D8-B050-4CFDD51132B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{264D953B-A3CF-43D8-B050-4CFDD51132B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{264D953B-A3CF-43D8-B050-4CFDD51132B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39E15F61-1BDC-493A-B338-8B67B1CBB679}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39E15F61-1BDC-493A-B338-8B67B1CBB679}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39E15F61-1BDC-493A-B338-8B67B1CBB679}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39E15F61-1BDC-493A-B338-8B67B1CBB679}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -191,6 +197,7 @@ Global
 		{1ACA6977-5D1F-4CC5-B08C-2AACAC758405} = {4660C095-B1E8-4508-AAE0-A3A23A0C55FA}
 		{264D953B-A3CF-43D8-B050-4CFDD51132B3} = {1ACA6977-5D1F-4CC5-B08C-2AACAC758405}
 		{90E4AC61-F1E0-4DE0-9D0C-A2FE91E11408} = {029EC8B8-6977-48C4-8DBA-1482C427078E}
+		{39E15F61-1BDC-493A-B338-8B67B1CBB679} = {90E4AC61-F1E0-4DE0-9D0C-A2FE91E11408}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A51A9635-0A34-4105-8459-2D9ACE97873A}
