@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 //builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
-//https://localhost:7166/.well-known/openid-configuration
+//https://localhost:5001/.well-known/openid-configuration
 builder.Services.AddIdentityServer()
                 .AddInMemoryIdentityResources(Config.IdentityResources)
                 .AddInMemoryApiScopes(Config.ApiScopes)
