@@ -18,23 +18,16 @@ namespace Movies.API.Controllers
             this.moviesAPIContext = moviesAPIContext;
         }
 
-        [HttpGet]
+        [HttpGet("Get")]
         public List<Movie> Get()
         {
             return moviesAPIContext.Movies.ToList();
         }
 
-        //[HttpGet]
-        //public List<Movie> GetById(int id)
-        //{
-        //    return moviesAPIContext.Movies.Where(x => x.Id == id);
-        //}
-
-        //[HttpGet]
-        //public Movie GetById(int id)
-        //{
-        //    var movie = moviesAPIContext.Movies.Find(id);
-        //    return movie;
-        //}
+        [HttpGet("GetById")]
+        public async Task<Movie> GetById([FromQuery] int id)
+        {
+            return await moviesAPIContext.Movies.FindAsync(id);
+        }
     }
 }
