@@ -16,12 +16,22 @@ builder.Services.AddDbContext<MoviesAPIContext>(options => options
 var app = builder.Build();
 
 ///SeedData-To-InMemory-Database --------------------------------------
+#region Way-1-of-Seed-Data
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
     var context = services.GetRequiredService<MoviesAPIContext>();
-    SeedData.Initialize(services);
+    SeedData.Initialize(context);
 }
+#endregion
+
+#region Way-2-of-Seed-Data
+//using (var scope = app.Services.CreateScope())
+//{
+//    var services = scope.ServiceProvider;
+//    SeedData.Initialize(services);
+//}
+#endregion
 ///---------------------------------------------------------------------
 
 // Configure the HTTP request pipeline.
