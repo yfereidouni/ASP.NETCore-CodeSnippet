@@ -77,7 +77,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "iUdemy.Secure.NET.Microserv
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Movies.API", "iIdentity\iUdemy.Secure.NET.Microservices.IdentityServer4\Movies.API\Movies.API.csproj", "{39E15F61-1BDC-493A-B338-8B67B1CBB679}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer", "iIdentity\iUdemy.Secure.NET.Microservices.IdentityServer4\IdentityServer\IdentityServer.csproj", "{0BB956FF-CCFA-4AE4-9E21-2467620F2826}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer", "iIdentity\iUdemy.Secure.NET.Microservices.IdentityServer4\IdentityServer\IdentityServer.csproj", "{0BB956FF-CCFA-4AE4-9E21-2467620F2826}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Movies.Client", "iIdentity\iUdemy.Secure.NET.Microservices.IdentityServer4\Movies.Client\Movies.Client.csproj", "{6069A512-3687-4E53-8DA7-90579E6C0A8C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -165,6 +167,10 @@ Global
 		{0BB956FF-CCFA-4AE4-9E21-2467620F2826}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0BB956FF-CCFA-4AE4-9E21-2467620F2826}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0BB956FF-CCFA-4AE4-9E21-2467620F2826}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6069A512-3687-4E53-8DA7-90579E6C0A8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6069A512-3687-4E53-8DA7-90579E6C0A8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6069A512-3687-4E53-8DA7-90579E6C0A8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6069A512-3687-4E53-8DA7-90579E6C0A8C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -205,6 +211,7 @@ Global
 		{90E4AC61-F1E0-4DE0-9D0C-A2FE91E11408} = {029EC8B8-6977-48C4-8DBA-1482C427078E}
 		{39E15F61-1BDC-493A-B338-8B67B1CBB679} = {90E4AC61-F1E0-4DE0-9D0C-A2FE91E11408}
 		{0BB956FF-CCFA-4AE4-9E21-2467620F2826} = {90E4AC61-F1E0-4DE0-9D0C-A2FE91E11408}
+		{6069A512-3687-4E53-8DA7-90579E6C0A8C} = {90E4AC61-F1E0-4DE0-9D0C-A2FE91E11408}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A51A9635-0A34-4105-8459-2D9ACE97873A}
