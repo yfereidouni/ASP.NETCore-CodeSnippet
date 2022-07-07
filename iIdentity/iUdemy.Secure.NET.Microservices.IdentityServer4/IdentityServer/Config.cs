@@ -25,7 +25,12 @@ public static class Config
             {
                 ClientId = "movies_mvc_client",
                 ClientName = "Movies MVC Web App",
-                AllowedGrantTypes = GrantTypes.Code,
+                
+                //AllowedGrantTypes = GrantTypes.Code,
+
+                AllowedGrantTypes = GrantTypes.Hybrid,
+                RequirePkce = false,   // by default is true
+                
                 AllowRememberConsent = false,
                 RedirectUris = new List<string>()
                 {
