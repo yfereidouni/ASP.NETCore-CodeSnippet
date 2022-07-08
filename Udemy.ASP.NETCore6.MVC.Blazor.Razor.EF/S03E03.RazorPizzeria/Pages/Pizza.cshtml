@@ -1,0 +1,67 @@
+﻿@page
+@model RazorPizzeria.Pages.PizzaModel
+@{
+}
+
+
+
+<div class="text-center">
+
+    <div class="mainText">
+        <h1 class="display-4 text-capitalize text-black">Our great selection of Pizzas!</h1>
+        <h4>Choose one, or try our Pizza Builder! Than Order and Done!</h4>
+        <h4>No need to give any of your details!</h4>
+        <h4>We already know everything!</h4>
+        <p class="smallText"><i>Only one Pizza per order.</i></p>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12 mb-5 mt-5">
+                <div class="w-100 row makeYourOwnDiv">
+                    <div class="col-4">
+                        <img class="w-100" src="~/images/custom-pizza1.png" />
+                    </div>
+                    <div class="col-8 align-items-center">
+                        <div class="align-middle makeYourOwntext">
+                            <h3 style="text-align:left;">Create your own Pizza</h3>
+                            <p style="text-align:left;">Make your own Pizza with our PizzaMaker!</p>
+                            <a style="float:left;" class="btn btn-primary mt-1" asp-area="" asp-page="Forms/CustomPizza">Try Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            @foreach (var pizza in Model.FakePizzaDB)
+            {
+                var imagePath = "~/images/" + (pizza.ImageTitle + ".jpg");
+                <div class="col-4 m-10 mb-5">
+                    @*<img src="@imagePath" class="w-100" asp-append-version="true" />*@
+                    @*<p>@pizza.PizzaName</p>*@
+                    @*<a class="btn btn-primary mt-1"
+                        asp-area=""
+                        asp-page="Checkout/Checkout"
+                        asp-route-ImageTitle="@pizza.ImageTitle"
+                        asp-route-PizzaPrice="@pizza.FinalPrice"
+                        asp-route-PizzaName="@pizza.PizzaName">Get this Pizza!</a>*@
+
+                    <a class="pizza-img text-decoration-none" asp-area=""
+                   asp-page="Checkout/Checkout"
+                   asp-route-ImageTitle="@pizza.ImageTitle"
+                   asp-route-PizzaPrice="@pizza.FinalPrice"
+                   asp-route-PizzaName="@pizza.PizzaName">
+                        <img src="@imagePath" class="w-100" asp-append-version="true" />
+                        <p class="mt-3">@pizza.PizzaName</p>
+                    </a>
+                    <br />
+                </div>
+            }
+
+        </div>
+    </div>
+
+</div>
+
+
+<a class="nav-link text-dark" asp-area="" asp-page="Forms/CustomPizza">CustomPizza</a>
+<a class="nav-link text-dark" asp-area="" asp-page="Checkout/Checkout">Checkout</a>
