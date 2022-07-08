@@ -1,0 +1,31 @@
+﻿@model List<DogViewModel>
+
+@{
+    ViewData["Title"] = "HelloWorld";
+}
+
+<div class="text-left">
+    <h1 class="display-4">Hello World bro!</h1>
+    <p>This is Index page of HelloWorld Controller.</p>
+</div>
+
+<br />
+<p>Dog list :</p>
+<table class="table table-bordered table-light table-hover table-striped">
+    <thead>
+        <tr class="table-info">
+            <th>Name</th>
+            <th>Age</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var dog in Model)
+        {
+            <tr>
+                <td>@dog.Name</td>
+                <td>@dog.Age <i>years old!</i></td>
+            </tr>
+        }
+    </tbody>
+
+</table>
