@@ -1,0 +1,57 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+}
+
+.mainText {
+    padding: 10px 5px;
+}
+
+.mainImage {
+    border-radius: 5px;
+    filter: drop-shadow(0px 0px 10px rgba(0,0,0,0.3));
+    margin: 40px;
+}
+
+.mainSubTitle {
+    font-weight: 400;
+    letter-spacing: 2px;
+}
+
+.customPitzza {
+    background-color: lightgray;
+}
+
+.smallText {
+    text-align: right;
+    color: gray;
+}
+
+.makeYourOwnDiv {
+    background-color: lightgray;
+    margin: 0;
+    border-radius: 5px;
+}
+
+.makeYourOwntext {
+    margin: 65px 0 20px 0;
+    /*color:white;*/
+}
+
+.pizza-img :hover {
+    transform: scale(1.05);
+}
