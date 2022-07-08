@@ -54,7 +54,8 @@ builder.Services.AddAuthentication(option =>
 builder.Services.AddTransient<AuthenticationDelegatingHandler>();
 builder.Services.AddHttpClient("movieAPIClient", client =>
 {
-    client.BaseAddress = new Uri("https://localhost:5001/");
+    //client.BaseAddress = new Uri("https://localhost:5001/"); // Movies API URL
+    client.BaseAddress = new Uri("https://localhost:5010/");   // Ocelot API Gateway
     client.DefaultRequestHeaders.Clear();
     client.DefaultRequestHeaders.Add(HeaderNames.Accept, "application/json");
 
