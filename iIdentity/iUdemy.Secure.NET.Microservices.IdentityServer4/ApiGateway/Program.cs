@@ -7,9 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
-builder.Services.AddOcelot();
 
-builder.Configuration.AddJsonFile("ocelot.json", false, true);
 
 var authenticationProviderKey = "IdentityApiKey";
 
@@ -23,6 +21,10 @@ builder.Services.AddAuthentication()
             ValidateAudience = false,
         };
     });
+
+builder.Configuration.AddJsonFile("ocelot.json", false, true);
+
+builder.Services.AddOcelot();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
