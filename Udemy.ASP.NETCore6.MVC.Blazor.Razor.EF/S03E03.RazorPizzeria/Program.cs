@@ -13,7 +13,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 var app = builder.Build();
 
-// Creating DB at runtime
+// Creating DB at runtime with performing migration
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
