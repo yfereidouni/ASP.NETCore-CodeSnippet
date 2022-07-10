@@ -8,6 +8,7 @@ namespace RazorPizzeria.Pages.Checkout
     [BindProperties(SupportsGet = true)]
     public class CheckoutModel : PageModel
     {
+
         private readonly ApplicationDbContext _context;
 
         public CheckoutModel(ApplicationDbContext context)
@@ -25,15 +26,30 @@ namespace RazorPizzeria.Pages.Checkout
         {
             if (string.IsNullOrWhiteSpace(PizzaName))
                 PizzaName = "Custom";
-            
+
             if (string.IsNullOrWhiteSpace(ImageTitle))
                 ImageTitle = "custom-pizza1";
+
+            //PizzaOrder pizzaOrder = new PizzaOrder();
+            //pizzaOrder.PizzaName = PizzaName;
+            //pizzaOrder.BasePrice = PizzaPrice;
+            //_context.PizzaOrders.Add(pizzaOrder);
+            //_context.SaveChanges();
+        }
+
+        public IActionResult OnPost()
+        {
+            if (string.IsNullOrWhiteSpace(PizzaName))
+                PizzaName = "Custom";
 
             PizzaOrder pizzaOrder = new PizzaOrder();
             pizzaOrder.PizzaName = PizzaName;
             pizzaOrder.BasePrice = PizzaPrice;
             _context.PizzaOrders.Add(pizzaOrder);
             _context.SaveChanges();
+
+
+            return RedirectToPage("ThankYou");
         }
     }
 }
