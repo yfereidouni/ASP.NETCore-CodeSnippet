@@ -10,17 +10,14 @@ builder.Services.AddRazorPages();
 var IsInMemroyUsed = true;
 if (IsInMemroyUsed)
 {
-    /// Use InMemory DB ----------------------------------------------------
-    builder.Services.AddDbContext<ApplicationDbContext>(c =>
-        c.UseInMemoryDatabase("S03E03.RazorPizzeria_InMemoryDB"));
-    ///---------------------------------------------------------------------
+    /// Use InMemory DB
+    builder.Services.AddDbContext<ApplicationDbContext>(options =>
+        options.UseInMemoryDatabase("S03E03.RazorPizzeria_InMemoryDB"));
 }
 else
 {
     builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    {
-        options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
-    });
+        options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 }
 
 
