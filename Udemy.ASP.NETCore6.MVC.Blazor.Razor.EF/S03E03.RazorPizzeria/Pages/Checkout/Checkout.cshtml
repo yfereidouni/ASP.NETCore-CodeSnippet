@@ -11,14 +11,19 @@
     else
         imagePath = "~/images/" + @Model.ImageTitle + ".jpg";
 }
+<form method="post">
 <div class="align-content-center">
     <div class="col-4 mx-auto mb-5">
         <img src=@imagePath class="w-100" asp-append-version="true" />
         <br />
         <p>Your order for the <strong>@Model.PizzaName</strong> Pizza is ready!</p>
         <p>Total price for your order is : <strong>@Model.PizzaPrice €</strong></p>
-        <a class="btn btn-primary mt-1 mx-auto" asp-area="" asp-page="../Checkout/ThankYou">Confirm Order</a>
+        
+        @*<a class="btn btn-primary mt-1 mx-auto" asp-area="" asp-page="../Checkout/ThankYou">Confirm Order</a>*@
+        <button type="submit" class="btn btn-primary mt-1">Confirm Order</button>
+
     </div>
 </div>
+</form>
 
 @*<a class="nav-link text-dark" asp-area="" asp-page="../Checkout/ThankYou">ThankYou</a>*@
