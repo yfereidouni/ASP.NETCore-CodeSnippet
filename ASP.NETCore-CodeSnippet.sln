@@ -93,7 +93,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "S03E03.RazorPizzeria", "Ude
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "S04E03.BlazorWebAssemblyApp", "S04E03.BlazorWebAssemblyApp", "{91C49422-82FB-4646-A93E-76C1DE65A1FF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "S04E03.BlazorWebAssemblyApp", "Udemy.ASP.NETCore6.MVC.Blazor.Razor.EF\S04E03.BlazorWebAssemblyApp\S04E03.BlazorWebAssemblyApp.csproj", "{71C6DDBF-F66C-4F7E-BA8D-563B1299E20B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "S04E03.BlazorWebAssemblyApp", "Udemy.ASP.NETCore6.MVC.Blazor.Razor.EF\S04E03.BlazorWebAssemblyApp\S04E03.BlazorWebAssemblyApp.csproj", "{71C6DDBF-F66C-4F7E-BA8D-563B1299E20B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
