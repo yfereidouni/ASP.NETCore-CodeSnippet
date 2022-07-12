@@ -7,29 +7,37 @@
 
 <p>This component demonstrates fetching data from the server.</p>
 
+<h4>Enter City</h4>
+<input type="text" @bind="@City" />
+<button onclick="GetWeatherForecast">Search</button>
+
 @if (forecasts == null)
 {
     <p><em>Loading...</em></p>
 }
 else
 {
+    var today = DateTime.Today;
+    <h4>@City Today: @today.ToShortDateString()</h4>
+    <p>Wind: @forecasts.Wind</p>
+    <p>Temp (C): @forecasts.Temperature</p>
+    <p>Summary: @forecasts.Description</p>
+
     <table class="table">
         <thead>
             <tr>
                 <th>Date</th>
                 <th>Temp. (C)</th>
-                <th>Temp. (F)</th>
-                <th>Summary</th>
+                <th>Wind</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var forecast in forecasts)
+            @foreach (var forecast in forecasts.Forecasts)
             {
                 <tr>
-                    <td>@forecast.Date.ToShortDateString()</td>
-                    <td>@forecast.TemperatureC</td>
-                    <td>@forecast.TemperatureF</td>
-                    <td>@forecast.Summary</td>
+                    <td>@today.AddDays(int.Parse(forecasts.Day)).ToShortDateString()</td>
+                    <td>@forecast.Temperature</td>
+                    <td>@forecast.Wind</td>
                 </tr>
             }
         </tbody>
@@ -37,21 +45,32 @@ else
 }
 
 @code {
-    private WeatherForecast[]? forecasts;
+    private string? City { get; set; } = "Berlin";
+
+    private WeatherForecast? forecasts;
 
     protected override async Task OnInitializedAsync()
     {
-        forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("sample-data/weather.json");
+        forecasts = await Http.GetFromJsonAsync<WeatherForecast>("Berlin");
     }
 
-    public class WeatherForecast
+    private async Task GetWeatherForecast()
     {
-        public DateTime Date { get; set; }
-
-        public int TemperatureC { get; set; }
-
-        public string? Summary { get; set; }
-
-        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+        forecasts = await Http.GetFromJsonAsync<WeatherForecast>(City);
     }
+
+    public partial class WeatherForecast : Forecast
+    {
+        public string? Description { get; set; }
+        public Forecast[]? Forecasts { get; set; }    
+    }
+    public class Forecast
+    {
+        public string? Temperature { get; set; }
+
+        public string? Day { get; set; }
+
+        public string? Wind { get; set; }
+    }
+
 }
