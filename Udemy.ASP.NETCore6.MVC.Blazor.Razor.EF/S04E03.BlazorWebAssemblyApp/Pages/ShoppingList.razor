@@ -1,12 +1,36 @@
 ﻿@page "/shoppinglist"
+@layout ShoppingListLayout
+
 @using S04E03.BlazorWebAssemblyApp.Data
 
 <PageTitle>@title</PageTitle>
 
 <h3>ShoppingList</h3>
+
+@*
 <input placeholder="Grocery Name" @bind="groceryName" />
 <input placeholder="Grocery Price" @bind="groceryPrice" />
 <button @onclick="AddGrocery">Add Grocery</button>
+*@
+<EditForm Model="@grocery" OnSubmit="AddGrocery">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <p>
+        <label>
+            Name:
+            <InputText @bind-Value="grocery.Name" />
+        </label>
+    </p>
+    <p>
+        <label>
+            Price:
+            <InputNumber @bind-Value="grocery.Price" />
+        </label>
+    </p>
+    <button type="submit">Add Grocery</button>
+</EditForm>
+
+
 
 <table class="table table-sm">
     <tr>
@@ -38,24 +62,29 @@
     private string title = "Our Groceries";
     private string groceryName;
     private float groceryPrice;
-
+    private Grocery grocery = new();
     private List<Grocery> Groceries = new();
 
     private void AddGrocery()
     {
-        if (!string.IsNullOrWhiteSpace(groceryName) && groceryPrice > 0)
-        {
-            Groceries.Add(new Grocery
-                {
-                    Name = groceryName,
-                    Price = groceryPrice
-                });
-            //sum += groceryPrice;
-            groceryName = string.Empty;
-            groceryPrice = 0;
-        }
-
+        //Way 2
+        Groceries.Add(grocery);
+        grocery = new();
         UpdateTotalAmount();
+
+        //Way 1
+        //if (!string.IsNullOrWhiteSpace(groceryName) && groceryPrice > 0)
+        //{
+        //    Groceries.Add(new Grocery
+        //        {
+        //            Name = groceryName,
+        //            Price = groceryPrice
+        //        });
+        //    //sum += groceryPrice;
+        //    groceryName = string.Empty;
+        //    groceryPrice = 0;
+        //}
+        //UpdateTotalAmount();
     }
 
     public void UpdateTotalAmount()
