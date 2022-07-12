@@ -1,0 +1,83 @@
+﻿@page "/weatherapi"
+@*@inject HttpClient Http*@
+@inject IHttpClientFactory ClientFactory
+
+
+<PageTitle>Weather forecast API</PageTitle>
+
+<h1>Weather forecast API</h1>
+
+<p>This component demonstrates fetching data from the API.</p>
+
+<t4>Enter City:</t4>
+<input type="text" placeholder="City" @bind="@City" />
+<button class="mb-2" type="submit" @onclick="GetWeatherForecast">Search</button>
+
+
+@if (weatherForecast == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    var today = DateTime.Today;
+    <h4>@City Today: @today.ToShortDateString()</h4>
+    <p>Wind @weatherForecast.Wind</p>
+    <p>Temp (C): @weatherForecast.Temperature</p>
+    <p>Summary: @weatherForecast.Description</p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Temp. (C)</th>
+                <th>Wind</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var forecast in weatherForecast.Forecast)
+            {
+                <tr>
+                    <td>@today.AddDays(int.Parse(forecast.Day)).ToShortDateString()</td>
+                    <td>@weatherForecast.Temperature</td>
+                    <td>@weatherForecast.Wind</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    public string City = "Berlin";
+
+    private WeatherForecast? weatherForecast;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GetWeatherForecast();
+    }
+
+    public async Task GetWeatherForecast()
+    {
+        //Use IHttpClientFactory
+        var httpClient = ClientFactory.CreateClient();
+
+        httpClient.BaseAddress = new Uri("https://goweather.herokuapp.com/weather/");
+
+        weatherForecast = await httpClient.GetFromJsonAsync<WeatherForecast>(City);
+    }
+
+    public partial class WeatherForecast : Forecast
+    {
+        public string? Description { get; set; }
+        public Forecast[]? Forecast { get; set; }
+    }
+
+    public class Forecast
+    {
+        public string? Temperature { get; set; }
+
+        public string? Day { get; set; }
+
+        public string? Wind { get; set; }
+    }
+}
