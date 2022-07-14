@@ -9,7 +9,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
+
+// Registring our services --------------------------------------
 builder.Services.AddScoped<IFileUpload, FileUpload>();
+builder.Services.AddScoped<IFileDownload, FileDownload>();
 
 var app = builder.Build();
 
