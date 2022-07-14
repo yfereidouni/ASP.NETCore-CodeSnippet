@@ -20,14 +20,14 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-//----------------------------------------------------------------------
+// SeedData: -----------------------------------------------------------
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
     SeedData.Initialize(services);
 }
-//OR:
-SeedData.Initialize(app.Services.CreateScope().ServiceProvider);
+//Way-2:
+//SeedData.Initialize(app.Services.CreateScope().ServiceProvider);
 //----------------------------------------------------------------------
 app.UseHttpsRedirection();
 app.UseStaticFiles();
