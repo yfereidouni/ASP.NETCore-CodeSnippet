@@ -97,7 +97,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "S04E03.BlazorWebAssemblyApp
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "S04E14.BlazorServerApp.FileUpload", "S04E14.BlazorServerApp.FileUpload", "{E404CABF-DE8E-4D29-8CF6-492BE6358CC1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "S04E14.BlazorServerApp.FileUpload", "Udemy.ASP.NETCore6.MVC.Blazor.Razor.EF\S04E14.BlazorServerApp.FileUpload\S04E14.BlazorServerApp.FileUpload.csproj", "{EF5BC140-DAC9-4A16-9F5F-96078B83EE1A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "S04E14.BlazorServerApp.FileUpload", "Udemy.ASP.NETCore6.MVC.Blazor.Razor.EF\S04E14.BlazorServerApp.FileUpload\S04E14.BlazorServerApp.FileUpload.csproj", "{EF5BC140-DAC9-4A16-9F5F-96078B83EE1A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
