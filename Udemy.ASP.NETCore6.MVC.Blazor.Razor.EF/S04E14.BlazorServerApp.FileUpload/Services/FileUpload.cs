@@ -49,9 +49,13 @@ public class FileUpload : IFileUpload
             {
                 return "images/pdf_logo.png";
             }
-            else
+            else if (file.ContentType.Contains("text"))
             {
                 return "images/txt_logo.png";
+            }
+            else
+            {
+                return "images/file_logo.png";
             }
         }
 
