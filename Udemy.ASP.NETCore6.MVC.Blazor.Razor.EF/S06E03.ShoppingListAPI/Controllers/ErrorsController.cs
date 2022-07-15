@@ -1,37 +1,38 @@
-﻿using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿//using Microsoft.AspNetCore.Diagnostics;
+//using Microsoft.AspNetCore.Http;
+//using Microsoft.AspNetCore.Mvc;
 
-namespace S06E03.ShoppingListAPI.Controllers;
+//namespace S06E03.ShoppingListAPI.Controllers;
 
-[Route("api/[controller]")]
-[ApiController]
-public class ErrorsController : ControllerBase
-{
+//[Route("api/[controller]")]
+//[ApiController]
+//public class ErrorsController : ControllerBase
+//{
 
-    [Route("/error-development")]
-    public IActionResult HandlerErrorDevelopment([FromServices] IHostEnvironment hostEnvironment)
-    {
-        if (!hostEnvironment.IsDevelopment())
-        {
-            return NotFound();
-        }
+//    [Route("/error-development")]
+//    public IActionResult HandleErrorDevelopment([FromServices] IHostEnvironment hostEnvironment)
+//    {
+//        if (!hostEnvironment.IsDevelopment())
+//        {
+//            return NotFound();
+//        }
+//        else
+//        {
+//            var exceptionHandlerFeature = HttpContext.Features.Get<IExceptionHandlerFeature>()!;
+//            return Problem(detail: exceptionHandlerFeature.Error.StackTrace,
+//                title: exceptionHandlerFeature.Error.Message);
+//        }
+//    }
 
-        var exceptionHandlerFeature = HttpContext.Features.Get<IExceptionHandlerFeature>();
+//    [Route("/error")]
+//    public IActionResult HandleError()
+//    {
+//        return Problem();
+//    }
 
-        return Problem(detail: exceptionHandlerFeature.Error.StackTrace,
-                        title: exceptionHandlerFeature.Error.Message);
-    }
-
-    [Route("/error")]
-    public IActionResult HandlerError()
-    {
-        return Problem();
-    }
-
-    [HttpGet("Throw")]
-    public IActionResult Throw()
-    {
-        throw new Exception("Sample Exception");
-    }
-}
+//    [HttpGet("Throw")]
+//    public IActionResult Throw()
+//    {
+//        throw new Exception("Sample Exception");
+//    }
+//}
