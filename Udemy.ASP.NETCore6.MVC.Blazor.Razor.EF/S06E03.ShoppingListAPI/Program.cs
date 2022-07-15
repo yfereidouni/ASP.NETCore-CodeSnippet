@@ -1,6 +1,12 @@
 using Microsoft.EntityFrameworkCore;
 using S06E03.ShoppingListAPI.Models;
 
+/// -----------------------------------------
+/// "ASPNETCORE_ENVIRONMENT": "Development"
+/// "ASPNETCORE_ENVIRONMENT": "Staging"
+/// https://localhost:5000/api/errors/throw
+/// -----------------------------------------
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -20,6 +26,11 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    app.UseExceptionHandler("/error-development");
+}
+else
+{
+    app.UseExceptionHandler("/error");
 }
 
 // SeedData: -----------------------------------------------------------
