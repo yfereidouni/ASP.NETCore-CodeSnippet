@@ -4,20 +4,19 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:26462",
-      "sslPort": 44339
+      "applicationUrl": "http://localhost:1149",
+      "sslPort": 44300
     }
   },
   "profiles": {
-    "S06E03.ShoppingListAPI": {
+    "S06E08.MinimalShoppingListAPI": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
       "launchUrl": "swagger",
-      "applicationUrl": "https://localhost:5000",
+      "applicationUrl": "https://localhost:7000;http://localhost:5000",
       "environmentVariables": {
-        //"ASPNETCORE_ENVIRONMENT": "Development"
-        "ASPNETCORE_ENVIRONMENT": "Staging"
+        "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
     "IIS Express": {
@@ -25,8 +24,7 @@
       "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
-        //"ASPNETCORE_ENVIRONMENT": "Development",
-        "ASPNETCORE_ENVIRONMENT": "Staging"
+        "ASPNETCORE_ENVIRONMENT": "Development"
       }
     }
   }
