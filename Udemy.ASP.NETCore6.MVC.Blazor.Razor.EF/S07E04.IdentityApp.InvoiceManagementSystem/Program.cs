@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using S07E04.IdentityApp.InvoiceManagementSystem.Data;
+using S07E04.IdentityApp.InvoiceManagementSystem.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -60,7 +61,7 @@ builder.Services.AddAuthorization(options =>
 //----------------------------------------------------------------
 
 
-//builder.Services.AddScoped<IAuthorizationHandler, InvoiceCreatorAutorizationHandler>();
+builder.Services.AddScoped<IAuthorizationHandler, InvoiceCreatorAuthorizationHandler>();
 //builder.Services.AddSingleton<IAuthorizationHandler, InvoiceManagerAuthorizationHandler>();
 //builder.Services.AddSingleton<IAuthorizationHandler, InvoiceAdminAuthorizationHandler>();
 
