@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ using S07E04.IdentityApp.InvoiceManagementSystem.Models;
 
 namespace S07E04.IdentityApp.InvoiceManagementSystem.Pages.Invoices
 {
+    [AllowAnonymous]
     public class IndexModel : PageModel
     {
         private readonly S07E04.IdentityApp.InvoiceManagementSystem.Data.ApplicationDbContext _context;
