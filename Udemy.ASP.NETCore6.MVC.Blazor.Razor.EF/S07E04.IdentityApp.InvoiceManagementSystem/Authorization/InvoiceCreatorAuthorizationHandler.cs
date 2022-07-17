@@ -18,11 +18,9 @@ public class InvoiceCreatorAuthorizationHandler :
     protected override Task HandleRequirementAsync(AuthorizationHandlerContext context,
         OperationAuthorizationRequirement requirement, Invoice invoice)
     {
+        //For Dennied Permission
         if (context.User == null || invoice == null)
-        {
-            //For Dennied Permission
             return Task.CompletedTask;
-        }
 
         if (requirement.Name != Constants.CreateOperationName &&
             requirement.Name != Constants.ReadOperationName &&
