@@ -12,7 +12,7 @@ using S07E04.IdentityApp.InvoiceManagementSystem.Models;
 
 namespace S07E04.IdentityApp.InvoiceManagementSystem.Pages.Invoices
 {
-    [AllowAnonymous]
+    //[AllowAnonymous]
     public class IndexModel : DI_BasePageModel
     {
 
@@ -23,7 +23,7 @@ namespace S07E04.IdentityApp.InvoiceManagementSystem.Pages.Invoices
         {
         }
 
-        public IList<Invoice> Invoice { get;set; } = default!;
+        public IList<Invoice> Invoice { get; set; } = default!;
 
         public async Task OnGetAsync()
         {
@@ -32,7 +32,7 @@ namespace S07E04.IdentityApp.InvoiceManagementSystem.Pages.Invoices
             if (Context.Invoices != null)
             {
                 Invoice = await Context.Invoices
-                    .Where(c=>c.CreatorId == currentUserId)
+                    .Where(c => c.CreatorId == currentUserId)
                     .ToListAsync();
             }
         }
