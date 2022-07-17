@@ -5,7 +5,7 @@ using S07E04.IdentityApp.InvoiceManagementSystem.Data;
 
 namespace S07E04.IdentityApp.InvoiceManagementSystem.Pages.Invoices;
 
-public class DI_BasePageModel:PageModel
+public class DI_BasePageModel : PageModel
 {
     protected ApplicationDbContext Context { get; }
     protected IAuthorizationService AuthorizationService { get; }
