@@ -14,9 +14,9 @@ namespace S07E04.IdentityApp.InvoiceManagementSystem.Pages.Invoices
     [AllowAnonymous]
     public class IndexModel : PageModel
     {
-        private readonly S07E04.IdentityApp.InvoiceManagementSystem.Data.ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public IndexModel(S07E04.IdentityApp.InvoiceManagementSystem.Data.ApplicationDbContext context)
+        public IndexModel(ApplicationDbContext context)
         {
             _context = context;
         }
