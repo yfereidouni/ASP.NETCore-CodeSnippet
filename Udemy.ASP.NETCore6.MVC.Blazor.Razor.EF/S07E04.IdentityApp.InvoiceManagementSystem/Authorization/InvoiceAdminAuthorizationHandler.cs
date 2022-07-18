@@ -4,7 +4,7 @@ using S07E04.IdentityApp.InvoiceManagementSystem.Models;
 
 namespace S07E04.IdentityApp.InvoiceManagementSystem.Authorization;
 
-public class InvoiceManagerAuthorizationHandler
+public class InvoiceAdminAuthorizationHandler
     : AuthorizationHandler<OperationAuthorizationRequirement, Invoice>
 {
     protected override Task HandleRequirementAsync(
@@ -15,14 +15,7 @@ public class InvoiceManagerAuthorizationHandler
         if (context.User == null || invoice == null)
             return Task.CompletedTask;
 
-        if (requirement.Name != Constants.ApproveOperationName &&
-            requirement.Name != Constants.RejectOperationName)
-        {
-            //For Dennied Permission
-            return Task.CompletedTask;
-        }
-
-        if (context.User.IsInRole(Constants.InvoiceManagersRole))
+        if (context.User.IsInRole(Constants.InvoiceAdminRole))
             context.Succeed(requirement);
 
         return Task.CompletedTask;

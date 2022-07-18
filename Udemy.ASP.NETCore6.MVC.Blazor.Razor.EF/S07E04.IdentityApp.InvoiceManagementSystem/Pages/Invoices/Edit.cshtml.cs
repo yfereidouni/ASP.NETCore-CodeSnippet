@@ -61,9 +61,7 @@ namespace S07E04.IdentityApp.InvoiceManagementSystem.Pages.Invoices
                 .SingleOrDefaultAsync(m => m.InvoiceId == id);
 
             if (invoice == null)
-            {
                 return NotFound();
-            }
 
             Invoice.CreatorId = invoice.CreatorId;
 
@@ -72,6 +70,10 @@ namespace S07E04.IdentityApp.InvoiceManagementSystem.Pages.Invoices
 
             if (!isAuthorized.Succeeded)
                 return Forbid();
+
+            // After editing the Invoice if we would like to reset status
+            // to "Submitted" again so, this line should be removed.
+            Invoice.Status = invoice.Status;
 
             Context.Attach(Invoice).State = EntityState.Modified;
 
