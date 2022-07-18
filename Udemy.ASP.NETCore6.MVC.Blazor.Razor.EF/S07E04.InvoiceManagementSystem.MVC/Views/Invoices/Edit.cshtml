@@ -1,0 +1,44 @@
+﻿@model S07E04.InvoiceManagementSystem.MVC.Models.Invoice
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Invoice</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="InvoiceId" />
+            <div class="form-group">
+                <label asp-for="InvoiceAmount" class="control-label"></label>
+                <input asp-for="InvoiceAmount" class="form-control" />
+                <span asp-validation-for="InvoiceAmount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InvoiceMonth" class="control-label"></label>
+                <input asp-for="InvoiceMonth" class="form-control" />
+                <span asp-validation-for="InvoiceMonth" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InvoiceOwner" class="control-label"></label>
+                <input asp-for="InvoiceOwner" class="form-control" />
+                <span asp-validation-for="InvoiceOwner" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
