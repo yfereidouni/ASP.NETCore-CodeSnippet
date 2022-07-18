@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using IdentityApp.Authorization;
+using S07E04.IdentityApp.InvoiceManagementSystem.Authorization;
 
-namespace IdentityApp.Data;
+namespace S07E04.IdentityApp.InvoiceManagementSystem.Data;
 
 public class SeedData
 {
     public static async Task Initialize(
-        IServiceProvider serviceProvider, string password)
+        IServiceProvider serviceProvider, string password = "1qaz!QAZ")
     {
         using (var context = new ApplicationDbContext(
             serviceProvider.GetRequiredService<DbContextOptions<ApplicationDbContext>>()))
@@ -23,37 +23,36 @@ public class SeedData
             //Admin(s)
             managerUid = await EnsureUser(serviceProvider, password, "admin@demo.com");
             await EnsureRole(serviceProvider, managerUid, Constants.InvoiceAdminRole);
-
         }
-
     }
 
     private static async Task<string> EnsureUser(
         IServiceProvider serviceProvider,
-        string userName, string initPw)
+        string initialPassword, string userName)
     {
         var userManager = serviceProvider.GetService<UserManager<IdentityUser>>();
 
         var user = await userManager.FindByNameAsync(userName);
 
-        if (user == null)
+        if (user is null)
         {
             user = new IdentityUser
             {
                 UserName = userName,
                 Email = userName,
-                EmailConfirmed = true
+                EmailConfirmed = true,
             };
-            var result = await userManager.CreateAsync(user, initPw);
+
+            var result = await userManager.CreateAsync(user, initialPassword);
 
             if (!result.Succeeded)
-                throw new Exception("User did not get created, Password Policy problem?");
+                throw new Exception("User did not get created. Password policy problem?");
         }
 
         return user.Id;
     }
 
-    public static async Task<IdentityResult> EnsureRole(
+    private static async Task<IdentityResult> EnsureRole(
         IServiceProvider serviceProvider,
         string uid, string role)
     {
@@ -62,19 +61,19 @@ public class SeedData
         IdentityResult ir;
 
         if (await roleManager.RoleExistsAsync(role) == false)
-        {
             ir = await roleManager.CreateAsync(new IdentityRole(role));
-        }
 
         var userManager = serviceProvider.GetService<UserManager<IdentityUser>>();
 
         var user = await userManager.FindByIdAsync(uid);
 
-        if (user == null)
-            throw new Exception("User not existing");
+        if (user is null)
+            throw new Exception("User not existing!");
 
         ir = await userManager.AddToRoleAsync(user, role);
 
         return ir;
+
     }
+
 }
