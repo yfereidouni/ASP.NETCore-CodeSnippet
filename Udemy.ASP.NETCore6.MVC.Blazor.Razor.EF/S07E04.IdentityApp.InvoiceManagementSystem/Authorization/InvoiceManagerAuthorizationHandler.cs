@@ -22,7 +22,7 @@ public class InvoiceManagerAuthorizationHandler
             return Task.CompletedTask;
         }
 
-        if (context.User.IsInRole(Constants.InvoiceManagerRole))
+        if (context.User.IsInRole(Constants.InvoiceManagersRole))
             context.Succeed(requirement);
 
         return Task.CompletedTask;
