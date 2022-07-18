@@ -1,0 +1,47 @@
+﻿@model IEnumerable<S07E04.InvoiceManagementSystem.MVC.Models.Invoice>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.InvoiceAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InvoiceMonth)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InvoiceOwner)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.InvoiceAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InvoiceMonth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InvoiceOwner)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.InvoiceId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.InvoiceId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.InvoiceId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
