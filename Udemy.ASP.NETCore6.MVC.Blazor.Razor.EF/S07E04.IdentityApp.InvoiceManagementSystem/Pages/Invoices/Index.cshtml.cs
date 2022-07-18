@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using S07E04.IdentityApp.InvoiceManagementSystem.Authorization;
 using S07E04.IdentityApp.InvoiceManagementSystem.Data;
 using S07E04.IdentityApp.InvoiceManagementSystem.Models;
 
@@ -27,14 +22,18 @@ namespace S07E04.IdentityApp.InvoiceManagementSystem.Pages.Invoices
 
         public async Task OnGetAsync()
         {
+            var invoices = from i in Context.Invoices
+                           select i;
+
+            var isManager = User.IsInRole(Constants.InvoiceManagersRole);
+
             var currentUserId = UserManager.GetUserId(User);
 
-            if (Context.Invoices != null)
-            {
-                Invoice = await Context.Invoices
-                    .Where(c => c.CreatorId == currentUserId)
-                    .ToListAsync();
-            }
+
+            if (!isManager)
+                invoices = invoices.Where(i => i.CreatorId == currentUserId);
+
+            Invoice = await invoices.ToListAsync();
         }
     }
 }
