@@ -21,8 +21,8 @@ public class SeedData
             await EnsureRole(serviceProvider, managerUid, Constants.InvoiceManagersRole);
 
             //Admin(s)
-            managerUid = await EnsureUser(serviceProvider, password, "admin@demo.com");
-            await EnsureRole(serviceProvider, managerUid, Constants.InvoiceAdminRole);
+            var adminUid = await EnsureUser(serviceProvider, password, "admin@demo.com");
+            await EnsureRole(serviceProvider, adminUid, Constants.InvoiceAdminRole);
         }
     }
 
