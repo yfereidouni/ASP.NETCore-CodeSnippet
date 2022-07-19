@@ -3,19 +3,19 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:61775",
-      "sslPort": 44393
+      "applicationUrl": "http://localhost:59833/",
+      "sslPort": 44309
     }
   },
   "profiles": {
     "S04E14.BlazorServerApp.FileUpload": {
       "commandName": "Project",
-      "dotnetRunMessages": true,
       "launchBrowser": true,
-      "applicationUrl": "https://localhost:7282;http://localhost:5282",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+      },
+      "applicationUrl": "https://localhost:7282;http://localhost:5282",
+      "dotnetRunMessages": true
     },
     "IIS Express": {
       "commandName": "IISExpress",
