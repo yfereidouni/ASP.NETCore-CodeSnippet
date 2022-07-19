@@ -1,4 +1,7 @@
-﻿@model S07E04.InvoiceManagementSystem.MVC.Models.Invoice
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> userManager
+
+@model S07E04.InvoiceManagementSystem.MVC.Models.Invoice
 
 @{
     ViewData["Title"] = "Edit";
@@ -13,6 +16,15 @@
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="InvoiceId" />
+
+            <div class="form-group">
+                @*@{
+                    var creatorId = userManager.GetUserId(User);
+                }*@
+                <input type="hidden" asp-for="CreatorId" class="form-control" />
+                <input type="hidden" asp-for="Status" value="@Model.Status" class="form-control" />
+                @*<span asp-validation-for="CreatorId" class="text-danger"></span>*@
+            </div>
             <div class="form-group">
                 <label asp-for="InvoiceAmount" class="control-label"></label>
                 <input asp-for="InvoiceAmount" class="form-control" />
