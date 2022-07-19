@@ -21,7 +21,12 @@
             <th>
                 @Html.DisplayNameFor(model => model.InvoiceOwner)
             </th>
-            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @*Actions*@
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -35,6 +40,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.InvoiceOwner)
+            </td> 
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.InvoiceId">Edit</a> |

@@ -26,27 +26,72 @@ namespace S07E04.InvoiceManagementSystem.MVC.Controllers
         // GET: Invoices
         public async Task<IActionResult> Index()
         {
-            return Context.Invoices != null ?
-                        View(await Context.Invoices.ToListAsync()) :
-                        Problem("Entity set 'ApplicationDbContext.Invoices'  is null.");
+            var invoices = await Context.Invoices.ToListAsync();
+
+            var currentUserId = UserManager.GetUserId(User);
+
+            var isManager = User.IsInRole(Constants.InvoiceManagersRole);
+            var isAdmin = User.IsInRole(Constants.InvoiceAdminRole);
+
+            if (!isManager && !isAdmin)
+                invoices = invoices
+                    .Where(i => i.CreatorId == currentUserId)
+                    .ToList(); ;
+
+            if (Context.Invoices == null)
+                return Problem("Entity set 'ApplicationDbContext.Invoices'  is null.");
+
+            return View(invoices);
         }
 
         // GET: Invoices/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || Context.Invoices == null)
-            {
                 return NotFound();
-            }
 
             var invoice = await Context.Invoices
                 .FirstOrDefaultAsync(m => m.InvoiceId == id);
+
             if (invoice == null)
-            {
                 return NotFound();
-            }
+
+            var isCreator = await AuthorizationService.AuthorizeAsync(
+                User, invoice, InvoiceOperations.Read);
+
+            var isManager = User.IsInRole(Constants.InvoiceManagersRole);
+
+            if (!isCreator.Succeeded && !isManager)
+                return Forbid();
 
             return View(invoice);
+        }
+
+        [HttpPost, ActionName("Details")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Details(int? id, InvoiceStatus status)
+        {
+            var invoice = await Context.Invoices.FindAsync(id);
+
+            if (invoice is null)
+                return NotFound();
+
+            var invoiceOperation = status == InvoiceStatus.Approved ?
+                InvoiceOperations.Approve
+                : InvoiceOperations.Reject;
+
+            var isAuthorized = await AuthorizationService.AuthorizeAsync(
+                User, invoice, invoiceOperation);
+
+            if (isAuthorized.Succeeded == false)
+                return Forbid();
+
+
+            invoice.Status = status;
+            Context.Invoices.Update(invoice);
+            await Context.SaveChangesAsync();
+
+            return RedirectToAction("Index");
         }
 
         // GET: Invoices/Create
@@ -93,6 +138,14 @@ namespace S07E04.InvoiceManagementSystem.MVC.Controllers
             {
                 return NotFound();
             }
+
+            var isAuthorized = await AuthorizationService.AuthorizeAsync(
+                User, invoice, InvoiceOperations.Update);
+
+            if (!isAuthorized.Succeeded)
+                return Forbid();
+
+
             return View(invoice);
         }
 
@@ -101,12 +154,16 @@ namespace S07E04.InvoiceManagementSystem.MVC.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("InvoiceId,InvoiceAmount,InvoiceMonth,InvoiceOwner")] Invoice invoice)
+        public async Task<IActionResult> Edit(int id, [Bind("CreatorId,Status,InvoiceId,InvoiceAmount,InvoiceMonth,InvoiceOwner")] Invoice invoice)
         {
             if (id != invoice.InvoiceId)
-            {
                 return NotFound();
-            }
+
+            var isAuthorized = await AuthorizationService.AuthorizeAsync(
+                User, invoice, InvoiceOperations.Update);
+
+            if (isAuthorized.Succeeded == false)
+                return Forbid();
 
             if (ModelState.IsValid)
             {
@@ -128,6 +185,7 @@ namespace S07E04.InvoiceManagementSystem.MVC.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+
             return View(invoice);
         }
 
@@ -135,16 +193,15 @@ namespace S07E04.InvoiceManagementSystem.MVC.Controllers
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || Context.Invoices == null)
-            {
                 return NotFound();
-            }
+
 
             var invoice = await Context.Invoices
                 .FirstOrDefaultAsync(m => m.InvoiceId == id);
+
             if (invoice == null)
-            {
                 return NotFound();
-            }
+
 
             return View(invoice);
         }
@@ -155,14 +212,18 @@ namespace S07E04.InvoiceManagementSystem.MVC.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (Context.Invoices == null)
-            {
                 return Problem("Entity set 'ApplicationDbContext.Invoices'  is null.");
-            }
+
             var invoice = await Context.Invoices.FindAsync(id);
+
+            var isAuthorized = await AuthorizationService.AuthorizeAsync(
+                User, invoice, InvoiceOperations.Delete);
+
+            if (isAuthorized.Succeeded == false)
+                return Forbid();
+
             if (invoice != null)
-            {
                 Context.Invoices.Remove(invoice);
-            }
 
             await Context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

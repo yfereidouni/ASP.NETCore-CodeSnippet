@@ -59,8 +59,17 @@ builder.Services.AddAuthorization(options =>
 
 
 builder.Services.AddScoped<IAuthorizationHandler, InvoiceCreatorAuthorizationHandler>();
+builder.Services.AddSingleton<IAuthorizationHandler, InvoiceManagerAuthorizationHandler>();
+builder.Services.AddSingleton<IAuthorizationHandler, InvoiceAdminAuthorizationHandler>();
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var seedUserPass = builder.Configuration.GetValue<string>("SeedUserPass");
+    await SeedData.Initialize(services,seedUserPass);
+};
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
