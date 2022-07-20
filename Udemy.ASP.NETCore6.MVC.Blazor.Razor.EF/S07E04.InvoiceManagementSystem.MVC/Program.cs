@@ -67,6 +67,11 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
+
+    //Auto-Migrate Database
+    var context = services.GetRequiredService<ApplicationDbContext>();
+    context.Database.Migrate();
+
     // Manage User Secrets
     var seedUserPass = builder.Configuration.GetValue<string>("SeedUserPass");
     await SeedData.Initialize(services,seedUserPass);
